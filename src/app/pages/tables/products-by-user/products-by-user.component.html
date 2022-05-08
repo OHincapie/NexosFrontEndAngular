@@ -1,0 +1,16 @@
+<nb-card>
+    <nb-card-header>
+        Productos por usuario
+    </nb-card-header>
+
+    <nb-card-body>
+        <label for="user" style="font-weight: bold;">Selecciona el usuario que quieres listar </label>
+        <nb-select style="margin-bottom: 2rem;" fullWidth (selectedChange)="userSelected($event)" selected="a">
+            <nb-option selected disabled value="a">Selecciona</nb-option>
+            <nb-option *ngFor="let user of usuarios" value="{{user.id}}">{{user.nombre}}</nb-option>
+        </nb-select>
+
+        <ng2-smart-table [settings]="settings" [source]="productosByUser">
+        </ng2-smart-table>
+    </nb-card-body>
+</nb-card>

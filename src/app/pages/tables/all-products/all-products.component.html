@@ -1,0 +1,28 @@
+<nb-card>
+    <nb-card-header>
+        Productos
+    </nb-card-header>
+
+    <nb-card-body>
+
+        <div style="margin-bottom: 2rem;">
+            <label for="user" style="font-weight: bold;">Selecciona el usuario que esta gestionando </label>
+            <nb-select fullWidth (selectedChange)="userSelected($event)" selected="0" [formControl]="usuarioSelForm">
+                <nb-option selected disabled value=0>Selecciona</nb-option>
+                <nb-option *ngFor="let user of usuarios" value="{{user.id}}">{{user.nombre}}</nb-option>
+            </nb-select>
+            <div class="error" *ngIf="usuarioSelForm.errors && usuarioSelForm.touched">
+                <p *ngIf="usuarioSelForm.hasError('required')">
+                    Es un campo requerido para gestionar
+                </p>
+            </div>
+        </div>
+
+
+
+        <ng2-smart-table [settings]="settings" [source]="allProducts" (createConfirm)="addRecord($event)"
+        (editConfirm)="updateRecord($event)"
+		(deleteConfirm)="onDeleteConfirm($event)">
+        </ng2-smart-table>
+    </nb-card-body>
+</nb-card>
